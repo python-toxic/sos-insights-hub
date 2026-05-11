@@ -8,7 +8,7 @@ import { Pagination } from "@/components/insights/Pagination";
 
 const PAGE_SIZE = 6;
 
-export const Route = createFileRoute("/insights")({
+export const Route = createFileRoute("/insights/")({
   head: () => ({
     meta: [
       { title: "Insights & Newsletters — SOS India" },
