@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -113,15 +114,17 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isAdmin = pathname.startsWith("/admin");
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col bg-background">
-        <SiteHeader />
+        {!isAdmin && <SiteHeader />}
         <main className="flex-1">
           <Outlet />
         </main>
-        <SiteFooter />
+        {!isAdmin && <SiteFooter />}
       </div>
     </QueryClientProvider>
   );
