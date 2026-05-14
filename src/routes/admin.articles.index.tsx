@@ -62,7 +62,6 @@ function ArticlesList() {
           <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
               <th className="px-5 py-3 font-medium">Title</th>
-              <th className="px-5 py-3 font-medium">Status</th>
               <th className="px-5 py-3 font-medium">Date</th>
               <th className="px-5 py-3 font-medium text-right">Actions</th>
             </tr>
@@ -70,7 +69,7 @@ function ArticlesList() {
           <tbody className="divide-y divide-border">
             {filtered.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-5 py-10 text-center text-muted-foreground">
+                <td colSpan={3} className="px-5 py-10 text-center text-muted-foreground">
                   No articles found.
                 </td>
               </tr>
@@ -80,18 +79,6 @@ function ArticlesList() {
                 <td className="px-5 py-3">
                   <div className="font-medium text-foreground">{a.title}</div>
                   <div className="text-xs text-muted-foreground">{a.category}</div>
-                </td>
-                <td className="px-5 py-3">
-                  <span
-                    className={
-                      "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium " +
-                      (a.status === "published"
-                        ? "bg-accent text-accent-foreground"
-                        : "bg-muted text-muted-foreground")
-                    }
-                  >
-                    {a.status === "published" ? "Published" : "Draft"}
-                  </span>
                 </td>
                 <td className="px-5 py-3 text-muted-foreground">
                   {formatDate(a.publishedAt)}

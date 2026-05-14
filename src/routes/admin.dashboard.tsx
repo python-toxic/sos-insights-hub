@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Link2, Check } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { useAdminArticles } from "@/lib/admin-store";
 import { formatDate } from "@/data/insights";
@@ -11,10 +13,26 @@ export const Route = createFileRoute("/admin/dashboard")({
 function Dashboard() {
   const articles = useAdminArticles();
   const published = articles.filter((a) => a.status === "published");
-  const drafts = articles.filter((a) => a.status === "draft");
   const recent = [...published]
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
     .slice(0, 5);
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const copyLink = async (slug: string) => {
+    const url = `${window.location.origin}/insights/${slug}`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setCopied(slug);
+    setTimeout(() => setCopied((c) => (c === slug ? null : c)), 1800);
+  };
 
   return (
     <AdminLayout>
@@ -35,10 +53,9 @@ function Dashboard() {
         </Link>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <Stat label="Total articles" value={articles.length} />
         <Stat label="Published" value={published.length} />
-        <Stat label="Drafts" value={drafts.length} />
       </div>
 
       <div className="mt-10 rounded-lg border border-border bg-background">
@@ -72,13 +89,26 @@ function Dashboard() {
                     {a.category} · {formatDate(a.publishedAt)}
                   </div>
                 </div>
-                <Link
-                  to="/admin/articles/$id/edit"
-                  params={{ id: a.slug }}
-                  className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
-                >
-                  Edit
-                </Link>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => copyLink(a.slug)}
+                    title="Copy public link"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-foreground transition-colors hover:bg-accent"
+                  >
+                    {copied === a.slug ? (
+                      <Check className="h-3.5 w-3.5 text-primary" />
+                    ) : (
+                      <Link2 className="h-3.5 w-3.5" />
+                    )}
+                  </button>
+                  <Link
+                    to="/admin/articles/$id/edit"
+                    params={{ id: a.slug }}
+                    className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
+                  >
+                    Edit
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>

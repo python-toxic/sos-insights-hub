@@ -15,7 +15,7 @@ export function ArticleCard({ article }: { article: Article }) {
           src={article.coverImage}
           alt={article.title}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          className="h-full w-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-110"
         />
       </div>
       <div className="flex flex-1 flex-col p-5">
