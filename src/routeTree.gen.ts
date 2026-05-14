@@ -11,7 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminArticlesIndexRouteImport } from './routes/admin.articles.index'
+import { Route as AdminArticlesNewRouteImport } from './routes/admin.articles.new'
+import { Route as AdminArticlesIdEditRouteImport } from './routes/admin.articles.$id.edit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +28,110 @@ const InsightsIndexRoute = InsightsIndexRouteImport.update({
   path: '/insights/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/insights/$slug',
   path: '/insights/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminArticlesIndexRoute = AdminArticlesIndexRouteImport.update({
+  id: '/admin/articles/',
+  path: '/admin/articles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminArticlesNewRoute = AdminArticlesNewRouteImport.update({
+  id: '/admin/articles/new',
+  path: '/admin/articles/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminArticlesIdEditRoute = AdminArticlesIdEditRouteImport.update({
+  id: '/admin/articles/$id/edit',
+  path: '/admin/articles/$id/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/insights/': typeof InsightsIndexRoute
+  '/admin/articles/new': typeof AdminArticlesNewRoute
+  '/admin/articles/': typeof AdminArticlesIndexRoute
+  '/admin/articles/$id/edit': typeof AdminArticlesIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/insights': typeof InsightsIndexRoute
+  '/admin/articles/new': typeof AdminArticlesNewRoute
+  '/admin/articles': typeof AdminArticlesIndexRoute
+  '/admin/articles/$id/edit': typeof AdminArticlesIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/insights/': typeof InsightsIndexRoute
+  '/admin/articles/new': typeof AdminArticlesNewRoute
+  '/admin/articles/': typeof AdminArticlesIndexRoute
+  '/admin/articles/$id/edit': typeof AdminArticlesIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/insights/$slug' | '/insights/'
+  fullPaths:
+    | '/'
+    | '/admin/dashboard'
+    | '/insights/$slug'
+    | '/admin/'
+    | '/insights/'
+    | '/admin/articles/new'
+    | '/admin/articles/'
+    | '/admin/articles/$id/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/insights/$slug' | '/insights'
-  id: '__root__' | '/' | '/insights/$slug' | '/insights/'
+  to:
+    | '/'
+    | '/admin/dashboard'
+    | '/insights/$slug'
+    | '/admin'
+    | '/insights'
+    | '/admin/articles/new'
+    | '/admin/articles'
+    | '/admin/articles/$id/edit'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin/dashboard'
+    | '/insights/$slug'
+    | '/admin/'
+    | '/insights/'
+    | '/admin/articles/new'
+    | '/admin/articles/'
+    | '/admin/articles/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
+  AdminArticlesNewRoute: typeof AdminArticlesNewRoute
+  AdminArticlesIndexRoute: typeof AdminArticlesIndexRoute
+  AdminArticlesIdEditRoute: typeof AdminArticlesIdEditRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,6 +150,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insights/$slug': {
       id: '/insights/$slug'
       path: '/insights/$slug'
@@ -82,14 +164,57 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/articles/': {
+      id: '/admin/articles/'
+      path: '/admin/articles'
+      fullPath: '/admin/articles/'
+      preLoaderRoute: typeof AdminArticlesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/articles/new': {
+      id: '/admin/articles/new'
+      path: '/admin/articles/new'
+      fullPath: '/admin/articles/new'
+      preLoaderRoute: typeof AdminArticlesNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/articles/$id/edit': {
+      id: '/admin/articles/$id/edit'
+      path: '/admin/articles/$id/edit'
+      fullPath: '/admin/articles/$id/edit'
+      preLoaderRoute: typeof AdminArticlesIdEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
   InsightsSlugRoute: InsightsSlugRoute,
+  AdminIndexRoute: AdminIndexRoute,
   InsightsIndexRoute: InsightsIndexRoute,
+  AdminArticlesNewRoute: AdminArticlesNewRoute,
+  AdminArticlesIndexRoute: AdminArticlesIndexRoute,
+  AdminArticlesIdEditRoute: AdminArticlesIdEditRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
