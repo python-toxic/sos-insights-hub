@@ -89,8 +89,10 @@ export function isAuthed(): boolean {
   if (typeof window === "undefined") return false;
   return localStorage.getItem(AUTH_KEY) === "1";
 }
+export const ADMIN_USERNAME = "SOS@admin";
+export const ADMIN_PASSWORD = "SOS@admin123";
 export function login(email: string, password: string): boolean {
-  if (email.trim() && password.trim().length >= 4) {
+  if (email.trim() === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
     localStorage.setItem(AUTH_KEY, "1");
     localStorage.setItem("sos.admin.email", email);
     return true;

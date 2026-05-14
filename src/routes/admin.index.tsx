@@ -9,7 +9,7 @@ export const Route = createFileRoute("/admin/")({
 
 function AdminLogin() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("admin@sosindia.in");
+  const [email, setEmail] = useState("SOS@admin");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -22,7 +22,7 @@ function AdminLogin() {
     if (login(email, password)) {
       navigate({ to: "/admin/dashboard" });
     } else {
-      setError("Enter a valid email and a password of at least 4 characters.");
+      setError("Invalid credentials.");
     }
   };
 
@@ -38,10 +38,10 @@ function AdminLogin() {
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
           <div>
             <label className="mb-1.5 block text-xs font-medium text-foreground">
-              Email
+              Username
             </label>
             <input
-              type="email"
+              type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus:border-primary"
@@ -70,7 +70,7 @@ function AdminLogin() {
             Sign in
           </button>
           <p className="text-center text-[11px] text-muted-foreground">
-            Demo mode · any email + 4+ char password
+            Demo credentials · SOS@admin / SOS@admin123
           </p>
         </form>
       </div>
