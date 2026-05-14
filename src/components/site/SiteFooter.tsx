@@ -34,28 +34,22 @@ export function SiteFooter() {
           </div>
           <div>
             <div className="text-sm font-medium text-foreground">
-              Stay informed
+              Get in touch
             </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Receive maritime and ship recycling insights directly in your
-              inbox.
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              For consultancy, compliance support, or recycling advisory,
+              reach our team directly.
             </p>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mt-4 flex gap-2"
-            >
-              <input
-                type="email"
-                placeholder="you@company.com"
-                className="h-10 flex-1 rounded-md border border-input bg-background px-3 text-sm outline-none focus:border-primary"
-              />
-              <button
-                type="submit"
-                className="h-10 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                Subscribe
-              </button>
-            </form>
+            <ul className="mt-4 space-y-1.5 text-sm text-muted-foreground">
+              <li>
+                <span className="text-foreground">Email:</span>{" "}
+                info@sosindia.in
+              </li>
+              <li>
+                <span className="text-foreground">Office:</span>{" "}
+                Mumbai, India
+              </li>
+            </ul>
           </div>
         </div>
         <div className="mt-10 border-t border-border pt-6 text-xs text-muted-foreground">
