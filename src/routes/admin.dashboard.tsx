@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { Link2, Check } from "lucide-react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { useAdminArticles } from "@/lib/admin-store";
 import { formatDate } from "@/data/insights";
@@ -11,10 +13,26 @@ export const Route = createFileRoute("/admin/dashboard")({
 function Dashboard() {
   const articles = useAdminArticles();
   const published = articles.filter((a) => a.status === "published");
-  const drafts = articles.filter((a) => a.status === "draft");
   const recent = [...published]
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
     .slice(0, 5);
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const copyLink = async (slug: string) => {
+    const url = `${window.location.origin}/insights/${slug}`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setCopied(slug);
+    setTimeout(() => setCopied((c) => (c === slug ? null : c)), 1800);
+  };
 
   return (
     <AdminLayout>

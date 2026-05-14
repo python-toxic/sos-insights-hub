@@ -60,9 +60,7 @@ export function ArticleEditor({ initial, mode }: Props) {
   const [author, setAuthor] = useState(
     initial?.author ?? "SOS India Editorial",
   );
-  const [published, setPublished] = useState(
-    initial ? initial.status === "published" : true,
-  );
+  const published = true;
   const fileRef = useRef<HTMLInputElement>(null);
 
   const onUpload = (file: File) => {
@@ -71,7 +69,7 @@ export function ArticleEditor({ initial, mode }: Props) {
     reader.readAsDataURL(file);
   };
 
-  const submit = (status: "draft" | "published") => {
+  const submit = () => {
     if (!title.trim()) {
       alert("Please add a title before saving.");
       return;
@@ -92,7 +90,7 @@ export function ArticleEditor({ initial, mode }: Props) {
       readingTime: reading,
       publishedAt: initial?.publishedAt ?? now,
       body: textToBody(content),
-      status,
+      status: "published",
       updatedAt: now,
     };
     saveArticle(article);
@@ -112,16 +110,10 @@ export function ArticleEditor({ initial, mode }: Props) {
         </div>
         <div className="flex gap-2">
           <button
-            onClick={() => submit("draft")}
-            className="h-10 rounded-md border border-input bg-background px-4 text-sm font-medium text-foreground hover:bg-accent"
-          >
-            Save draft
-          </button>
-          <button
-            onClick={() => submit(published ? "published" : "draft")}
+            onClick={submit}
             className="h-10 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
-            {published ? "Publish" : "Save"}
+            {mode === "new" ? "Publish" : "Save changes"}
           </button>
         </div>
       </div>
@@ -216,32 +208,6 @@ export function ArticleEditor({ initial, mode }: Props) {
             />
           </Field>
 
-          <div className="flex items-center justify-between rounded-md border border-border bg-background px-4 py-3">
-            <div>
-              <div className="text-sm font-medium text-foreground">
-                Publish article
-              </div>
-              <div className="text-xs text-muted-foreground">
-                Visible on public site.
-              </div>
-            </div>
-            <button
-              role="switch"
-              aria-checked={published}
-              onClick={() => setPublished((v) => !v)}
-              className={
-                "relative h-6 w-11 rounded-full transition-colors " +
-                (published ? "bg-primary" : "bg-muted")
-              }
-            >
-              <span
-                className={
-                  "absolute top-0.5 h-5 w-5 rounded-full bg-background shadow transition-all " +
-                  (published ? "left-[22px]" : "left-0.5")
-                }
-              />
-            </button>
-          </div>
         </aside>
       </div>
     </div>
