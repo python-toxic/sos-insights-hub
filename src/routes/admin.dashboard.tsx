@@ -53,10 +53,9 @@ function Dashboard() {
         </Link>
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <Stat label="Total articles" value={articles.length} />
         <Stat label="Published" value={published.length} />
-        <Stat label="Drafts" value={drafts.length} />
       </div>
 
       <div className="mt-10 rounded-lg border border-border bg-background">
@@ -90,13 +89,26 @@ function Dashboard() {
                     {a.category} · {formatDate(a.publishedAt)}
                   </div>
                 </div>
-                <Link
-                  to="/admin/articles/$id/edit"
-                  params={{ id: a.slug }}
-                  className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
-                >
-                  Edit
-                </Link>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => copyLink(a.slug)}
+                    title="Copy public link"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-foreground transition-colors hover:bg-accent"
+                  >
+                    {copied === a.slug ? (
+                      <Check className="h-3.5 w-3.5 text-primary" />
+                    ) : (
+                      <Link2 className="h-3.5 w-3.5" />
+                    )}
+                  </button>
+                  <Link
+                    to="/admin/articles/$id/edit"
+                    params={{ id: a.slug }}
+                    className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
+                  >
+                    Edit
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>
