@@ -36,9 +36,9 @@ function Dashboard() {
 
   return (
     <AdminLayout>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
             Dashboard
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -47,7 +47,7 @@ function Dashboard() {
         </div>
         <Link
           to="/admin/articles/new"
-          className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          className="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 sm:w-auto"
         >
           Create new article
         </Link>
@@ -79,7 +79,7 @@ function Dashboard() {
             {recent.map((a) => (
               <li
                 key={a.slug}
-                className="flex items-center justify-between px-5 py-3"
+                className="flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-5"
               >
                 <div className="min-w-0">
                   <div className="truncate text-sm font-medium text-foreground">
@@ -89,11 +89,12 @@ function Dashboard() {
                     {a.category} · {formatDate(a.publishedAt)}
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 sm:shrink-0">
                   <button
                     onClick={() => copyLink(a.slug)}
                     title="Copy public link"
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-input bg-background text-foreground transition-colors hover:bg-accent"
+                    aria-label="Copy public link"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background text-foreground transition-colors hover:bg-accent"
                   >
                     {copied === a.slug ? (
                       <Check className="h-3.5 w-3.5 text-primary" />
@@ -104,7 +105,7 @@ function Dashboard() {
                   <Link
                     to="/admin/articles/$id/edit"
                     params={{ id: a.slug }}
-                    className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
+                    className="inline-flex h-9 items-center rounded-md border border-input bg-background px-3 text-xs font-medium text-foreground transition-colors hover:bg-accent"
                   >
                     Edit
                   </Link>

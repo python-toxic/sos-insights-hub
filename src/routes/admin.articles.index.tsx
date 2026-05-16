@@ -31,9 +31,9 @@ function ArticlesList() {
 
   return (
     <AdminLayout>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
             Articles
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -42,7 +42,7 @@ function ArticlesList() {
         </div>
         <Link
           to="/admin/articles/new"
-          className="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          className="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 sm:w-auto"
         >
           Create new article
         </Link>
@@ -57,53 +57,96 @@ function ArticlesList() {
         />
       </div>
 
-      <div className="mt-4 overflow-hidden rounded-lg border border-border bg-background">
-        <table className="w-full text-sm">
-          <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
-            <tr>
-              <th className="px-5 py-3 font-medium">Title</th>
-              <th className="px-5 py-3 font-medium">Date</th>
-              <th className="px-5 py-3 font-medium text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {filtered.length === 0 && (
+      {/* Mobile: card list */}
+      <div className="mt-4 space-y-3 sm:hidden">
+        {filtered.length === 0 && (
+          <div className="rounded-lg border border-dashed border-border bg-background px-4 py-8 text-center text-sm text-muted-foreground">
+            No articles found.
+          </div>
+        )}
+        {filtered.map((a) => (
+          <div
+            key={a.slug}
+            className="rounded-lg border border-border bg-background p-4"
+          >
+            <div className="text-sm font-medium text-foreground">{a.title}</div>
+            <div className="mt-1 text-xs text-muted-foreground">
+              {a.category} · {formatDate(a.publishedAt)}
+            </div>
+            <div className="mt-3 flex gap-2">
+              <Link
+                to="/admin/articles/$id/edit"
+                params={{ id: a.slug }}
+                className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-center text-xs font-medium text-foreground hover:bg-accent"
+              >
+                Edit
+              </Link>
+              <button
+                onClick={() => setConfirm(a.slug)}
+                className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-xs font-medium text-destructive hover:bg-destructive/10"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: table */}
+      <div className="mt-4 hidden overflow-hidden rounded-lg border border-border bg-background sm:block">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-muted/50 text-left text-xs uppercase tracking-wide text-muted-foreground">
               <tr>
-                <td colSpan={3} className="px-5 py-10 text-center text-muted-foreground">
-                  No articles found.
-                </td>
+                <th className="px-5 py-3 font-medium">Title</th>
+                <th className="px-5 py-3 font-medium">Date</th>
+                <th className="px-5 py-3 text-right font-medium">Actions</th>
               </tr>
-            )}
-            {filtered.map((a) => (
-              <tr key={a.slug} className="hover:bg-muted/30">
-                <td className="px-5 py-3">
-                  <div className="font-medium text-foreground">{a.title}</div>
-                  <div className="text-xs text-muted-foreground">{a.category}</div>
-                </td>
-                <td className="px-5 py-3 text-muted-foreground">
-                  {formatDate(a.publishedAt)}
-                </td>
-                <td className="px-5 py-3 text-right">
-                  <div className="inline-flex gap-2">
-                    <Link
-                      to="/admin/articles/$id/edit"
-                      params={{ id: a.slug }}
-                      className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      onClick={() => setConfirm(a.slug)}
-                      className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-destructive transition-colors hover:bg-destructive/10"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {filtered.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={3}
+                    className="px-5 py-10 text-center text-muted-foreground"
+                  >
+                    No articles found.
+                  </td>
+                </tr>
+              )}
+              {filtered.map((a) => (
+                <tr key={a.slug} className="hover:bg-muted/30">
+                  <td className="px-5 py-3">
+                    <div className="font-medium text-foreground">{a.title}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {a.category}
+                    </div>
+                  </td>
+                  <td className="whitespace-nowrap px-5 py-3 text-muted-foreground">
+                    {formatDate(a.publishedAt)}
+                  </td>
+                  <td className="px-5 py-3 text-right">
+                    <div className="inline-flex gap-2">
+                      <Link
+                        to="/admin/articles/$id/edit"
+                        params={{ id: a.slug }}
+                        className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-accent"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        onClick={() => setConfirm(a.slug)}
+                        className="rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium text-destructive transition-colors hover:bg-destructive/10"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {target && (
