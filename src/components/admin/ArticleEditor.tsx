@@ -99,26 +99,26 @@ export function ArticleEditor({ initial, mode }: Props) {
 
   return (
     <div>
-      <div className="flex items-start justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
             {mode === "new" ? "New article" : "Edit article"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Write and publish a newsletter or insight.
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 sm:shrink-0">
           <button
             onClick={submit}
-            className="h-10 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            className="h-10 w-full rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90 sm:w-auto"
           >
             {mode === "new" ? "Publish" : "Save changes"}
           </button>
         </div>
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">
+      <div className="mt-6 grid gap-6 sm:mt-8 lg:grid-cols-[1fr_320px] lg:gap-8">
         <div className="space-y-6">
           <Field label="Title">
             <input
@@ -146,9 +146,9 @@ export function ArticleEditor({ initial, mode }: Props) {
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              rows={20}
+              rows={16}
               placeholder="Write your article…"
-              className="w-full rounded-md border border-input bg-background px-4 py-3 font-serif text-[15px] leading-[1.7] outline-none focus:border-primary"
+              className="min-h-[320px] w-full rounded-md border border-input bg-background px-4 py-3 font-serif text-[15px] leading-[1.7] outline-none focus:border-primary sm:min-h-[480px]"
             />
           </Field>
         </div>
