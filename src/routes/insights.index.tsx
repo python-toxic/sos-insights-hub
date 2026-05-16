@@ -57,22 +57,22 @@ function InsightsPage() {
   );
 
   return (
-    <div className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 md:px-8 md:py-16">
       <header className="max-w-3xl">
-        <p className="text-sm font-medium uppercase tracking-wider text-primary">
+        <p className="text-xs font-medium uppercase tracking-wider text-primary sm:text-sm">
           Insights & Newsletters
         </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+        <h1 className="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl">
           Maritime and ship recycling intelligence
         </h1>
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg">
           Practical analysis, regulatory updates, and operational guidance for
           shipowners, managers, and recycling stakeholders — curated by the SOS
           India team.
         </p>
       </header>
 
-      <div className="mt-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="mt-8 flex flex-col gap-4 md:mt-10 md:flex-row md:items-center md:justify-between">
         <SearchBar
           value={search}
           onChange={(v) => {

@@ -2,7 +2,7 @@ import type { Block } from "@/data/insights";
 
 export function ArticleBody({ blocks }: { blocks: Block[] }) {
   return (
-    <div className="mx-auto max-w-[68ch] space-y-6 text-[17px] leading-[1.8] text-foreground/90">
+    <div className="mx-auto max-w-[68ch] space-y-6 text-base leading-[1.75] text-foreground/90 sm:text-[17px] sm:leading-[1.8]">
       {blocks.map((block, i) => {
         switch (block.type) {
           case "h2":

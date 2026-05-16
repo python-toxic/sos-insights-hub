@@ -74,7 +74,7 @@ function ArticlePage() {
   const { article } = Route.useLoaderData();
 
   return (
-    <div className="px-5 py-10 md:px-8 md:py-14">
+    <div className="px-4 py-8 sm:px-6 md:px-8 md:py-14">
       <div className="mx-auto max-w-6xl">
         <Link
           to="/insights"
@@ -85,18 +85,18 @@ function ArticlePage() {
         </Link>
       </div>
 
-      <article className="mx-auto mt-8 max-w-6xl">
+      <article className="mx-auto mt-6 max-w-6xl sm:mt-8">
         <header className="mx-auto max-w-[68ch]">
           <span className="inline-flex items-center rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-primary">
             {article.category}
           </span>
-          <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-foreground md:text-4xl">
+          <h1 className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">
             {article.title}
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             {article.excerpt}
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
             <span className="font-medium text-foreground">
               {article.author}
             </span>
