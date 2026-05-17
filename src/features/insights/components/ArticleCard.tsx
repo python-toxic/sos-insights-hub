@@ -1,9 +1,10 @@
+import { memo } from "react";
 import { Link } from "@tanstack/react-router";
 import { Calendar, Clock } from "lucide-react";
 import type { Article } from "@/features/insights";
 import { formatDate } from "@/features/insights";
 
-export function ArticleCard({ article }: { article: Article }) {
+function ArticleCardBase({ article }: { article: Article }) {
   return (
     <Link
       to="/insights/$slug"
