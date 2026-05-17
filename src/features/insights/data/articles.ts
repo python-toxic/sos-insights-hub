@@ -1,5 +1,7 @@
 import type { Article } from "../types";
 
+const lorem = (s: string) => s;
+
 export const ARTICLES: Article[] = [
   {
     slug: "imo-regulations-2025",

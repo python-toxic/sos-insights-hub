@@ -46,3 +46,6 @@ function ArticleCardBase({ article }: { article: Article }) {
     </Link>
   );
 }
+
+export const ArticleCard = memo(ArticleCardBase);
+
