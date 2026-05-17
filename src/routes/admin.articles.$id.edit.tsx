@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AdminLayout } from "@/components/admin/AdminLayout";
-import { ArticleEditor } from "@/components/admin/ArticleEditor";
-import { getArticleById } from "@/lib/admin-store";
+import { AdminLayout } from "@/features/admin/components/@/components/admin/AdminLayout";
+import { ArticleEditor } from "@/features/admin/components/@/components/admin/ArticleEditor";
+import { getArticleById } from "@/features/admin";
 import { useEffect, useState } from "react";
-import type { AdminArticle } from "@/lib/admin-store";
+import type { AdminArticle } from "@/features/admin";
 
 export const Route = createFileRoute("/admin/articles/$id/edit")({
   head: () => ({ meta: [{ title: "Edit article — SOS India Admin" }] }),

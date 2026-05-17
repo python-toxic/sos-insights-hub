@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Link2, Check } from "lucide-react";
-import { AdminLayout } from "@/components/admin/AdminLayout";
-import { useAdminArticles } from "@/lib/admin-store";
-import { formatDate } from "@/data/insights";
+import { AdminLayout } from "@/features/admin/components/@/components/admin/AdminLayout";
+import { useAdminArticles } from "@/features/admin";
+import { formatDate } from "@/features/insights";
 
 export const Route = createFileRoute("/admin/dashboard")({
   head: () => ({ meta: [{ title: "Dashboard — SOS India Admin" }] }),

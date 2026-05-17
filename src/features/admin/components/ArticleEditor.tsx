@@ -5,8 +5,8 @@ import {
   saveArticle,
   slugify,
   type AdminArticle,
-} from "@/lib/admin-store";
-import type { Category } from "@/data/insights";
+} from "@/features/admin";
+import type { Category } from "@/features/insights";
 
 interface Props {
   initial?: AdminArticle;

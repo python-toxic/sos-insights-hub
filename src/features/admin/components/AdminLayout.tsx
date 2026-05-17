@@ -1,7 +1,7 @@
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { Menu, X } from "lucide-react";
-import { currentEmail, isAuthed, logout } from "@/lib/admin-store";
+import { currentEmail, isAuthed, logout } from "@/features/admin";
 
 export function AdminLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();

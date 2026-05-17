@@ -109,8 +109,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-import { SiteHeader } from "@/components/site/SiteHeader";
-import { SiteFooter } from "@/components/site/SiteFooter";
+import { SiteHeader } from "@/shared/layout/SiteHeader";
+import { SiteFooter } from "@/shared/layout/SiteFooter";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();

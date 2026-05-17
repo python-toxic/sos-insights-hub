@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Calendar, Clock } from "lucide-react";
-import type { Article } from "@/data/insights";
-import { formatDate } from "@/data/insights";
+import type { Article } from "@/features/insights";
+import { formatDate } from "@/features/insights";
 
 export function ArticleCard({ article }: { article: Article }) {
   return (

@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { isAuthed, login } from "@/lib/admin-store";
+import { isAuthed, login } from "@/features/admin";
 
 export const Route = createFileRoute("/admin/")({
   head: () => ({ meta: [{ title: "Admin Login — SOS India" }] }),

@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { AdminLayout } from "@/components/admin/AdminLayout";
-import { deleteArticle, useAdminArticles } from "@/lib/admin-store";
-import { formatDate } from "@/data/insights";
+import { AdminLayout } from "@/features/admin/components/@/components/admin/AdminLayout";
+import { deleteArticle, useAdminArticles } from "@/features/admin";
+import { formatDate } from "@/features/insights";
 
 export const Route = createFileRoute("/admin/articles/")({
   head: () => ({ meta: [{ title: "Articles — SOS India Admin" }] }),
