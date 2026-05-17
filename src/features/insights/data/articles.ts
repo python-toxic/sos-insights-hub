@@ -1,29 +1,4 @@
-export type Category = "Regulations" | "Compliance" | "Safety" | "Sustainability";
-
-export type Block =
-  | { type: "p"; text: string }
-  | { type: "h2"; text: string }
-  | { type: "ul"; items: string[] }
-  | { type: "quote"; text: string };
-
-export interface Article {
-  slug: string;
-  title: string;
-  excerpt: string;
-  category: Category;
-  publishedAt: string; // ISO
-  readingTime: number; // minutes
-  coverImage: string;
-  author: string;
-  body: Block[];
-}
-
-export const CATEGORIES: Category[] = [
-  "Regulations",
-  "Compliance",
-  "Safety",
-  "Sustainability",
-];
+import type { Article } from "../types";
 
 const lorem = (s: string) => s;
 
@@ -217,27 +192,3 @@ export const ARTICLES: Article[] = [
     ],
   },
 ];
-
-export function getArticleBySlug(slug: string): Article | undefined {
-  return ARTICLES.find((a) => a.slug === slug);
-}
-
-export function getRelatedArticles(slug: string, limit = 3): Article[] {
-  const current = getArticleBySlug(slug);
-  if (!current) return [];
-  const sameCat = ARTICLES.filter(
-    (a) => a.slug !== slug && a.category === current.category,
-  );
-  const others = ARTICLES.filter(
-    (a) => a.slug !== slug && a.category !== current.category,
-  );
-  return [...sameCat, ...others].slice(0, limit);
-}
-
-export function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}

@@ -1,4 +1,4 @@
-import { CATEGORIES, type Category } from "@/data/insights";
+import { CATEGORIES, type Category } from "@/features/insights";
 
 interface Props {
   active: Category | "All";

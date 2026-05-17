@@ -1,4 +1,4 @@
-import type { Block } from "@/data/insights";
+import type { Block } from "@/features/insights";
 
 export function ArticleBody({ blocks }: { blocks: Block[] }) {
   return (

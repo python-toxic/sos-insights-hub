@@ -1,5 +1,5 @@
 import { ArticleCard } from "./ArticleCard";
-import { getRelatedArticles } from "@/data/insights";
+import { getRelatedArticles } from "@/features/insights";
 
 export function RelatedArticles({ slug }: { slug: string }) {
   const related = getRelatedArticles(slug, 3);
