@@ -1,9 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { getArticleBySlug, formatDate } from "@/features/insights";
-import { ArticleBody } from "@/features/insights/components/@/components/insights/ArticleBody";
-import { ShareButtons } from "@/features/insights/components/@/components/insights/ShareButtons";
-import { RelatedArticles } from "@/features/insights/components/@/components/insights/RelatedArticles";
+import { ArticleBody } from "@/features/insights/components/ArticleBody";
+import { ShareButtons } from "@/features/insights/components/ShareButtons";
+import { RelatedArticles } from "@/features/insights/components/RelatedArticles";
 
 export const Route = createFileRoute("/insights/$slug")({
   loader: ({ params }) => {

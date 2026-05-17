@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Link2, Check } from "lucide-react";
-import { AdminLayout } from "@/features/admin/components/@/components/admin/AdminLayout";
+import { AdminLayout } from "@/features/admin/components/AdminLayout";
 import { useAdminArticles } from "@/features/admin";
 import { formatDate } from "@/features/insights";
 

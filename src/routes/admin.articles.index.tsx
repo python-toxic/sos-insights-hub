@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { AdminLayout } from "@/features/admin/components/@/components/admin/AdminLayout";
+import { AdminLayout } from "@/features/admin/components/AdminLayout";
 import { deleteArticle, useAdminArticles } from "@/features/admin";
 import { formatDate } from "@/features/insights";
 

@@ -1,10 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ARTICLES, type Category } from "@/features/insights";
-import { ArticleCard } from "@/features/insights/components/@/components/insights/ArticleCard";
-import { SearchBar } from "@/features/insights/components/@/components/insights/SearchBar";
-import { CategoryFilter } from "@/features/insights/components/@/components/insights/CategoryFilter";
-import { Pagination } from "@/features/insights/components/@/components/insights/Pagination";
+import { ArticleCard } from "@/features/insights/components/ArticleCard";
+import { SearchBar } from "@/features/insights/components/SearchBar";
+import { CategoryFilter } from "@/features/insights/components/CategoryFilter";
+import { Pagination } from "@/features/insights/components/Pagination";
 
 const PAGE_SIZE = 6;
 
