@@ -98,6 +98,14 @@ export function SiteHeader() {
                 </a>
               ),
             )}
+            <Link
+              to="/admin"
+              onClick={() => setOpen(false)}
+              className="mt-1 inline-flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            >
+              <Shield className="h-4 w-4" />
+              Admin
+            </Link>
           </nav>
         </div>
       )}
