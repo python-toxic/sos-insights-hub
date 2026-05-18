@@ -52,6 +52,16 @@ export function SiteHeader() {
           )}
         </nav>
 
+        <div className="hidden items-center gap-3 lg:flex">
+          <Link
+            to="/admin"
+            className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            <Shield className="h-3.5 w-3.5" />
+            Admin
+          </Link>
+        </div>
+
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
