@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as AdminResetRouteImport } from './routes/admin.reset'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminArticlesIndexRouteImport } from './routes/admin.articles.index'
 import { Route as AdminArticlesNewRouteImport } from './routes/admin.articles.new'
@@ -36,6 +37,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/insights/$slug',
   path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminResetRoute = AdminResetRouteImport.update({
+  id: '/admin/reset',
+  path: '/admin/reset',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
@@ -62,6 +68,7 @@ const AdminArticlesIdEditRoute = AdminArticlesIdEditRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/reset': typeof AdminResetRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/insights/': typeof InsightsIndexRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/reset': typeof AdminResetRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/admin': typeof AdminIndexRoute
   '/insights': typeof InsightsIndexRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/reset': typeof AdminResetRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/insights/': typeof InsightsIndexRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin/dashboard'
+    | '/admin/reset'
     | '/insights/$slug'
     | '/admin/'
     | '/insights/'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/admin/dashboard'
+    | '/admin/reset'
     | '/insights/$slug'
     | '/admin'
     | '/insights'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/admin/dashboard'
+    | '/admin/reset'
     | '/insights/$slug'
     | '/admin/'
     | '/insights/'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminResetRoute: typeof AdminResetRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
   InsightsIndexRoute: typeof InsightsIndexRoute
@@ -164,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/reset': {
+      id: '/admin/reset'
+      path: '/admin/reset'
+      fullPath: '/admin/reset'
+      preLoaderRoute: typeof AdminResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/dashboard': {
       id: '/admin/dashboard'
       path: '/admin/dashboard'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminDashboardRoute: AdminDashboardRoute,
+  AdminResetRoute: AdminResetRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
   InsightsIndexRoute: InsightsIndexRoute,
