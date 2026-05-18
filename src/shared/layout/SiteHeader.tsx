@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Anchor, Menu, X } from "lucide-react";
+import { Anchor, Menu, Shield, X } from "lucide-react";
 import { useState } from "react";
 
 const NAV = [

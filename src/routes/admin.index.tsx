@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { isAuthed, login } from "@/features/admin";
 
@@ -69,9 +69,12 @@ function AdminLogin() {
           >
             Sign in
           </button>
-          <p className="text-center text-[11px] text-muted-foreground">
-            Demo credentials · SOS@admin / SOS@admin123
-          </p>
+          <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+            <span>Demo · SOS@admin / SOS@admin123</span>
+            <Link to="/admin/reset" className="hover:text-foreground hover:underline">
+              Forgot password?
+            </Link>
+          </div>
         </form>
       </div>
     </div>
