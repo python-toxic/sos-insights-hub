@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Anchor, Menu, X } from "lucide-react";
+import { Anchor, Menu, Shield, X } from "lucide-react";
 import { useState } from "react";
 
 const NAV = [
@@ -52,6 +52,16 @@ export function SiteHeader() {
           )}
         </nav>
 
+        <div className="hidden items-center gap-3 lg:flex">
+          <Link
+            to="/admin"
+            className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            <Shield className="h-3.5 w-3.5" />
+            Admin
+          </Link>
+        </div>
+
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -88,6 +98,14 @@ export function SiteHeader() {
                 </a>
               ),
             )}
+            <Link
+              to="/admin"
+              onClick={() => setOpen(false)}
+              className="mt-1 inline-flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            >
+              <Shield className="h-4 w-4" />
+              Admin
+            </Link>
           </nav>
         </div>
       )}
